@@ -2,27 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+final List<String> imagesList = [
+  'https://cdn.pixabay.com/photo/2020/11/01/23/22/breakfast-5705180_1280.jpg',
+  'https://cdn.pixabay.com/photo/2016/11/18/19/00/breads-1836411_1280.jpg',
+  'https://cdn.pixabay.com/photo/2019/01/14/17/25/gelato-3932596_1280.jpg',
+  'https://cdn.pixabay.com/photo/2017/04/04/18/07/ice-cream-2202561_1280.jpg',
+];
+
 void main() {
   runApp(Blogs());
 }
-
 
 class Blogs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(
-          child: MyHomePage()
-      ),
+      home: Container(child: MyHomePage()),
       debugShowCheckedModeBanner: false,
-     // home: ,
+      // home: ,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage() : super();
-  final String title = "Carousel Demo";
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -30,25 +33,34 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  late CarouselSlider carouselSlider;
-  int _current = 0;
-  List imgList = [
-    'https://images.unsplash.com/photo-1502117859338-fd9daa518a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1554321586-92083ba0a115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1536679545597-c2e5e1946495?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1543922596-b3bbaba80649?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-    'https://images.unsplash.com/photo-1502943693086-33b5b1cfdf2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-  ];
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
-  }
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final keywordField = TextField(
+      decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
+        border: OutlineInputBorder(),
+        labelText: 'Keywords',
+      ),
+    );
+    final categoryField = TextField(
+      decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
+        border: OutlineInputBorder(),
+        labelText: 'Any Category',
+      ),
+    );
+    final locationField = TextField(
+      decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
+        border: OutlineInputBorder(),
+        labelText: 'Location',
+      ),
+    );
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -58,159 +70,243 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 10,
               alignment: Alignment.topRight,
               child: UserAccountsDrawerHeader(
-                accountName: Text("Usama Hafeez" , textAlign: TextAlign.center,),
-                accountEmail: Text("mhmd.usama.hafeez@gmail.com" , textAlign: TextAlign.center,),
+                accountName: Text(
+                  "Usama Hafeez",
+                  textAlign: TextAlign.center,
+                ),
+                accountEmail: Text(
+                  "mhmd.usama.hafeez@gmail.com",
+                  textAlign: TextAlign.center,
+                ),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(
                       "https://firebasestorage.googleapis.com/v0/b/smart-city-project-8d006.appspot.com/o/images%2F0d5bca54-e521-4311-bddf-8e9af133ecad?alt=media&token=22b8bc08-f758-4eff-8616-af50eca23de3"),
                 ),
               ),
-
-            ),
-
-
-            InkWell(
-                onTap: (){},
-                child: ListTile(
-                  title: Text('Home Page',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.home),
-                )
             ),
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('My Account',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.person),
-                )
-            ),
+                  title: Text('Jobs',
+                      style: TextStyle(
+                        fontSize: 16.0,
 
-
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.shopping_bag),
+                )),
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('My Orders',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.shopping_basket),
-                )
-            ),
-
-
+                  title: Text('Tourism',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.hearing),
+                )),
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('Categories',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.dashboard),
-                )
-            ),
-
+                  title: Text('Restaurants',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.restaurant),
+                )),
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('My Orders',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.shopping_basket),
-                )
-            ),
-
+                  title: Text('Hotel',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.bed),
+                )),
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('Favourites',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.favorite),
-                )
-            ),
-
+                  title: Text('News',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.view_compact_outlined),
+                )),
+            InkWell(
+                onTap: () {},
+                child: ListTile(
+                  title: Text('Videos',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.video_call),
+                )),
             Divider(),
-
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('Settings',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.settings),
-                )
-            ),
-
+                  title: Text('About',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.help),
+                )),
             InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: ListTile(
-                  title: Text('About',style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-                  leading: Icon(Icons.help, color: Colors.blue),
-                )
-            ),
-
+                  title: Text('Contact Us',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        /*fontWeight: FontWeight.bold,*/
+                      )),
+                  leading: Icon(Icons.contact_page_rounded),
+                )),
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 32.0, 0, 0),
-        child: Container(
-            padding: const EdgeInsets.all(32),
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0.0, 0, 32),
             child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  RaisedButton.icon(
-                    onPressed: () {
-                      _scaffoldKey.currentState?.openDrawer();
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    icon: Icon(
-                      Icons.menu,
-                      color: Colors.lightBlue,
-                    ),
-                    splashColor: Colors.white,
-                    color: Colors.white,
-                    label: Text(""),
-                  ),
-                  Container(
-                    width: 36,
-                    height: 36,
-                    margin: const EdgeInsets.fromLTRB(0, 0, 32, 0),
-                    //  alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(),
-                    child: Image.asset(
-                      "assets/ic_login.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    end: Alignment.bottomCenter,
+                    begin: Alignment.topCenter,
+                    colors: [Colors.black12, Colors.black12]),
               ),
-            )
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        _scaffoldKey.currentState?.openDrawer();
+                      }, // handle your image tap here
+                      child: Image.asset(
+                        'assets/ic_menu.png', color: Colors.lightBlueAccent,
+                        fit: BoxFit.cover, // this is the solution for border
+                        width: 40.0,
+                        height: 40.0,
+                      ),
+                    ),
+                    /*ElevatedButton.icon(
+                      onPressed: () {
+                        _scaffoldKey.currentState?.openDrawer();
+                      },
+
+                      icon: Icon(
+                        Icons.menu,
+                        color: Colors.lightBlueAccent,
+                      ), label: Text(""),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent)
+                      ),
+
+                    ),*/
+                    Container(
+                      width: 185,
+                      height: 36,
+                      decoration: BoxDecoration(),
+                      child: Image.asset(
+                        "assets/logo.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(12.0,0, 12.0, 0),
+
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                        autoPlay: true,
+                       // enlargeCenterPage: true,
+                        onPageChanged: (index, reason) {
+                          setState() {
+                            _currentIndex = index;
+                          }
+                        }),
+
+                    /*items: [Padding(padding: const EdgeInsets.all(8),
+              child: imagesList.map((e) => Padding),
+              )
+
+              ],*/
+                    items: [
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Image.asset(
+                          'assets/ic_babyC.png',
+                          fit: BoxFit.cover, // this is the solution for border
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Image.asset(
+                          'assets/ic_bakrey.png',
+                          fit: BoxFit.cover, // this is the solution for border
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Image.asset(
+                          'assets/ic_beverages.png',
+                          fit: BoxFit.cover, // this is the solution for border
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Image.asset(
+                          'assets/ic_daalen.png',
+                          fit: BoxFit.cover, // this is the solution for border
+                        ),
+                      ),
+                    ],
+                  )),
 
 
-        ),
+          ),//Slider,
 
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xC000000) , Color(0xC000000)
+                ]
+              )
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children:<Widget> [
+                    SizedBox(height: 15),
+                    keywordField,
+                    SizedBox(height: 25),
+                    categoryField,
+                    SizedBox(height: 25),
+                    locationField,
+                    SizedBox(height: 15),
+                  ],
+                ),
+              ),
+            ),
+          )
 
-
+    ],
       ),
-
-
     );
   }
 }
-
-
-
