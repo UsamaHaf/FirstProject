@@ -28,11 +28,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  List<JobModel> jobs = [
-    JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" ),
-       JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" ),
-  ];
+  // List<JobModel> jobs = [
+  //   JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" ),
+  //      JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" ),
+  // ];
 
+
+  List jobTitle = ['Laravel Developer','Android Developer','Laravel Developer'];
+    List txt2 = ['Example','Sample','Example'];
+    List location = ['Lahore','ISlamabad','Lahore'];
+      List jobType = ['Full Time','Part Time','Full Time'];
   @override
   Widget build(BuildContext context) {
     final keywordField = TextField(
@@ -284,12 +289,30 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.blue)),
               ),
             ),
+        Container(
+       
+          child: ListView.builder(
+            physics: AlwaysScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: jobTitle.length,
+            itemBuilder: (context,index){
+            return listCard(jobTitle[index], txt2[index], location[index], jobType[index],(){});
+          }),
+        )
+      
 
-            Container(
+
+          ],
+        ),
+
+      ),
+    );
+  }
+  Widget listCard(jobTitle,txt2,location,jobType,onPress){
+    return 
+          Container(
               child: InkWell(
-                onTap: () {
-                  // _navigateToDashBoard(context);
-                },
+                onTap:onPress,
                 child: Column(
                   children: [
                     Padding(
@@ -305,7 +328,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           title: Text(
-                            "SENIOR LARAVEL DEVELOPER",
+                            
+                           jobTitle,
                             style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'Montserrat',
@@ -322,7 +346,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 width: 2,
                               ),
                               Text(
-                                "Envato",
+                            txt2,
                                 style: TextStyle(fontSize: 10),
                               ),
                               SizedBox(
@@ -337,7 +361,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 width: 2,
                               ),
                               Text(
-                                "Sargodha, Punjab",
+                                location,
                                 style: TextStyle(fontSize: 10),
                               ),
                               SizedBox(
@@ -353,7 +377,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(4.0),
                                   child: Text(
-                                    "Full Time",
+                                  jobType,
                                     style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.bold,
@@ -371,14 +395,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-            ),
-
-
-          ],
-        ),
-
-      ),
-    );
+            );
   }
 }
 /*Container(
