@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
-final List<String> imagesList = [
-  'https://cdn.pixabay.com/photo/2020/11/01/23/22/breakfast-5705180_1280.jpg',
-  'https://cdn.pixabay.com/photo/2016/11/18/19/00/breads-1836411_1280.jpg',
-  'https://cdn.pixabay.com/photo/2019/01/14/17/25/gelato-3932596_1280.jpg',
-  'https://cdn.pixabay.com/photo/2017/04/04/18/07/ice-cream-2202561_1280.jpg',
-];
+import 'package:untitled/LatestJobs.dart';
+import 'package:untitled/Models/JobsModel.dart';
 
 void main() {
   runApp(Blogs());
@@ -33,7 +28,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  int _currentIndex = 0;
+  List<JobModel> jobs = [
+    JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" )
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -169,11 +166,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0.0, 0, 32),
-            child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 32,),
+            Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                     end: Alignment.bottomCenter,
@@ -196,20 +193,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 40.0,
                       ),
                     ),
-                    /*ElevatedButton.icon(
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openDrawer();
-                      },
-
-                      icon: Icon(
-                        Icons.menu,
-                        color: Colors.lightBlueAccent,
-                      ), label: Text(""),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent)
-                      ),
-
-                    ),*/
                     Container(
                       width: 185,
                       height: 36,
@@ -223,27 +206,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-          ),
-
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12.0,0, 12.0, 0),
-
+            Container(
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 0, 12.0, 0),
                   child: CarouselSlider(
                     options: CarouselOptions(
-                        autoPlay: true,
-                       // enlargeCenterPage: true,
-                        onPageChanged: (index, reason) {
-                          setState() {
-                            _currentIndex = index;
-                          }
-                        }),
-
-                    /*items: [Padding(padding: const EdgeInsets.all(8),
-              child: imagesList.map((e) => Padding),
-              )
-
-              ],*/
+                      autoPlay: true,
+                    ),
                     items: [
                       Padding(
                         padding: const EdgeInsets.all(8),
@@ -275,38 +244,146 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   )),
-
-
-          ),//Slider,
-
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xC000000) , Color(0xC000000)
-                ]
-              )
+            ), //Slider,
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Color(0xC000000), Color(0xC000000)])),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 15),
+                      keywordField,
+                      SizedBox(height: 25),
+                      categoryField,
+                      SizedBox(height: 25),
+                      locationField,
+                      SizedBox(height: 15),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            child: Center(
+            SizedBox(height: 15),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.topLeft,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Color(0xC000000), Color(0xC000000)])),
+              //  margin: const EdgeInsets.fromLTRB(16, 0, 0, 0),
               child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
+                child: Text("Latest Jobs",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue)),
+              ),
+            ),
+
+            Container(
+              child: InkWell(
+                onTap: () {
+                  // _navigateToDashBoard(context);
+                },
                 child: Column(
-                  children:<Widget> [
-                    SizedBox(height: 15),
-                    keywordField,
-                    SizedBox(height: 25),
-                    categoryField,
-                    SizedBox(height: 25),
-                    locationField,
-                    SizedBox(height: 15),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: 30,
+                            child: Image.asset(
+                              "assets/ic_login.png",
+                              height: 20,
+                              width: 20,
+                            ),
+                          ),
+                          title: Text(
+                            "SENIOR LARAVEL DEVELOPER",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Row(
+                            children: [
+                              Icon(
+                                Icons.home_outlined,
+                                color: Colors.black,
+                                size: 16,
+                              ),
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Text(
+                                "Envato",
+                                style: TextStyle(fontSize: 10),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(
+                                Icons.location_pin,
+                                color: Colors.blueGrey,
+                                size: 16,
+                              ),
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Text(
+                                "Sargodha, Punjab",
+                                style: TextStyle(fontSize: 10),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(colors: [
+                                      Colors.lightBlueAccent,
+                                      Colors.lightBlueAccent
+                                    ])),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    "Full Time",
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+
+                              //ElevatedButton(onPressed: () { }, child: Text("Full Time", style: TextStyle(fontSize: 10),),),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-          )
 
-    ],
+
+          ],
+        ),
+
       ),
     );
   }
 }
+/*Container(
+            child: ListView.builder(itemCount: jobs.length ,
+                itemBuilder: (context , index)=>LatestJobs(jobModel: jobs[index],),
+            ),
+
+          ),*/
+

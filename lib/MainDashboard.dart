@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'LatestJobs.dart';
 import 'Registration.dart';
 
 void main() {
@@ -14,6 +15,11 @@ void _navigateToSignUp(BuildContext context) {
   Navigator.of(context)
       .push(MaterialPageRoute(builder: (context) => Registration()));
 }
+/*
+void _navigateToJobs(BuildContext context) {
+  Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => LatestJobs(jobModel: null,)));
+}*/
 
 class HomePage extends StatelessWidget {
   @override
@@ -47,7 +53,9 @@ class HomePage extends StatelessWidget {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          //_navigateToJobs(context);
+        },
         child: Text(
           "Login",
           textAlign: TextAlign.center,
