@@ -4,15 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:untitled/LatestJobs.dart';
 import 'package:untitled/Models/JobsModel.dart';
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: JobDynamic(),
-    title: "Latest Jobs",
-
-  ));
-}
-
 class JobDynamic extends StatefulWidget {
   const JobDynamic({Key? key}) : super(key: key);
   @override
@@ -22,8 +13,8 @@ class JobDynamic extends StatefulWidget {
 class _JobDynamics extends State{
 
   List<JobModel> jobs = [
-    JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full"),
-    JobModel(jobTitle:"IOS Dev", officeName:"DEV Sol", officeLocation:"Rehman Plaza", jobType:"Full"),
+    // JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full"),
+    // JobModel(jobTitle:"IOS Dev", officeName:"DEV Sol", officeLocation:"Rehman Plaza", jobType:"Full"),
   ];
   @override
   Widget build(BuildContext context) {

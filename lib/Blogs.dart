@@ -4,9 +4,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:untitled/LatestJobs.dart';
 import 'package:untitled/Models/JobsModel.dart';
 
-void main() {
-  runApp(Blogs());
-}
+// void main() {
+//   runApp(Blogs());
+// }
 
 class Blogs extends StatelessWidget {
   @override
@@ -29,7 +29,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<JobModel> jobs = [
-    JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" )
+    JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" ),
+       JobModel(jobTitle:"Android Dev", officeName:"Canva", officeLocation:"Rehman Plaza", jobType:"Full" ),
   ];
 
   @override

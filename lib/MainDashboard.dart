@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'LatestJobs.dart';
+
 import 'Registration.dart';
 
 void main() {

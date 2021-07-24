@@ -4,13 +4,13 @@ import 'package:untitled/Models/JobsModel.dart';
 import 'package:untitled/Registration.dart';
 import 'MainDashboard.dart';
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: "Latest Jobs",
+// void main() {
+//   runApp(MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     title: "Latest Jobs",
 
-  ));
-}
+//   ));
+// }
 
 class LatestJobs extends StatelessWidget {
 
